@@ -48,3 +48,15 @@ print('< Object content length: {} >'.format(obj.content_length))
 print('< Object body: {} >'.format(obj.get()['Body'].read()))
 print('< Object last modified: {} >'.format(obj.last_modified))
 
+# 7. Delete objects in bucket
+print('\n[ Deleting all object in bucket {} ]'.format(bucket_name))
+delete_responses = bucket.objects.delete()
+for delete_response in delete_responses:
+	for deleted in delete_response['Deleted']:
+		print('\t[ Deleted: {} ]'.format(deleted['Key']))
+
+
+# 8. Delete bucket
+print('\n[ Deleting the bucket ]\n')
+bucket.delete()
+
